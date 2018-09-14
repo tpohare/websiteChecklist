@@ -1,5 +1,6 @@
 package info.hobocore.websiteChecklist.homepage
 
+import info.hobocore.websiteChecklist.homepage.entities.Webpage
 import info.hobocore.websiteChecklist.http.Controller
 import io.ktor.application.ApplicationCall
 
