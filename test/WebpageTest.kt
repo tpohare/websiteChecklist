@@ -6,7 +6,7 @@ import kotlin.test.assertEquals
 class WebpageTest {
 
     @Test
-    fun queryingForAURLReturnsAnInoutStream() {
+    fun queryingForAURLReturnsAnInputStream() {
         val response:InputStream = Webpage().getStream("http://example.com")
         val responseSize:Int = response.readBytes().size
 
