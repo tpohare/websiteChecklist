@@ -8,7 +8,7 @@ class GzipVerifierTests {
     @Test
     fun passesOnAGzippedPage() {
         val webpage = Webpage("https://www.met.ie/css/met.css")
-        val isValid: Boolean = GZIPVerifier().runTest(webpage.inputStream)
+        val isValid: Boolean = GZIPVerifier().runTest(webpage)
 
         assertTrue { isValid }
     }
@@ -16,7 +16,7 @@ class GzipVerifierTests {
     @Test
     fun failsOnANonGzippedPage() {
         val webpage = Webpage("https://entertainment.ie")
-        val isValid: Boolean = GZIPVerifier().runTest(webpage.inputStream)
+        val isValid: Boolean = GZIPVerifier().runTest(webpage)
 
         assertFalse { isValid }
     }

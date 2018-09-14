@@ -1,8 +1,10 @@
 package info.hobocore.websiteChecklist.homepage.entities
 
+import java.io.IOException
 import java.io.InputStream
 import java.net.HttpURLConnection
 import java.net.URL
+import java.util.zip.GZIPInputStream
 
 class Webpage(url:String) {
     var inputStream:InputStream
@@ -16,7 +18,11 @@ class Webpage(url:String) {
         this.inputStream = connection.inputStream
     }
 
-//    fun getStream(): InputStream {
-//        return inputStream
-//    }
+    fun unzipped(): String {
+        return try {
+            GZIPInputStream(this.inputStream).bufferedReader().use { it.readText() }
+        } catch (e:IOException) {
+            this.inputStream.bufferedReader().use { it.readText() }
+        }
+    }
 }

@@ -1,5 +1,5 @@
 buildscript {
-    ext.kotlin_version = '1.2.61'
+    ext.kotlin_version = '1.2.70'
     ext.ktor_version = '0.9.4'
     ext.logback_version = '1.2.1'
     
@@ -45,6 +45,7 @@ dependencies {
     compile "io.ktor:ktor-server-sessions:$ktor_version"
     compile "io.ktor:ktor-client-core:$ktor_version"
     compile "io.ktor:ktor-client-jetty:$ktor_version"
+    compile group: 'com.google.code.crawler-commons', name: 'crawler-commons', version: '0.5'
     testCompile "io.ktor:ktor-server-tests:$ktor_version"
     testCompile "io.ktor:ktor-server-core:$ktor_version"
     testCompile "io.ktor:ktor-server-host-common:$ktor_version"
