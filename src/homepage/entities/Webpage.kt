@@ -4,12 +4,19 @@ import java.io.InputStream
 import java.net.HttpURLConnection
 import java.net.URL
 
-class Webpage {
-    fun getStream(url:String): InputStream {
+class Webpage(url:String) {
+    var inputStream:InputStream
+
+    init {
         val obj = URL(url)
 
-        with(obj.openConnection() as HttpURLConnection) {
-            return inputStream
-        }
+        val connection:HttpURLConnection = obj.openConnection() as HttpURLConnection
+        connection.setRequestProperty("Accept-Encoding", "gzip")
+
+        this.inputStream = connection.inputStream
     }
+
+//    fun getStream(): InputStream {
+//        return inputStream
+//    }
 }

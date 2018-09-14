@@ -7,7 +7,7 @@ class WebpageTest {
 
     @Test
     fun queryingForAURLReturnsAnInputStream() {
-        val response:InputStream = Webpage().getStream("http://example.com")
+        val response:InputStream = Webpage("http://example.com").inputStream
         val responseSize:Int = response.readBytes().size
 
         assertEquals(1270, responseSize)

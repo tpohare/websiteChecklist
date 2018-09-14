@@ -1,23 +1,30 @@
 package info.hobocore.websiteChecklist
 
-import io.ktor.application.*
-import io.ktor.response.*
-import io.ktor.request.*
-import io.ktor.routing.*
-import io.ktor.http.*
-import io.ktor.locations.*
-import io.ktor.sessions.*
-import io.ktor.features.*
-import org.slf4j.event.*
-import io.ktor.client.*
-import io.ktor.client.engine.jetty.*
-import io.ktor.http.content.resources
-import io.ktor.http.content.static
 import info.hobocore.websiteChecklist.exceptions.AuthenticationFailed
 import info.hobocore.websiteChecklist.exceptions.AuthorizationFailed
 import info.hobocore.websiteChecklist.homepage.Homepage
 import info.hobocore.websiteChecklist.persistence.UserSession
+import io.ktor.application.Application
+import io.ktor.application.call
+import io.ktor.application.install
+import io.ktor.client.HttpClient
+import io.ktor.client.engine.jetty.Jetty
+import io.ktor.features.*
+import io.ktor.http.HttpHeaders
+import io.ktor.http.HttpMethod
+import io.ktor.http.HttpStatusCode
+import io.ktor.http.content.resources
+import io.ktor.http.content.static
+import io.ktor.locations.Locations
+import io.ktor.request.path
+import io.ktor.response.respond
+import io.ktor.routing.get
+import io.ktor.routing.routing
 import io.ktor.server.netty.DevelopmentEngine
+import io.ktor.sessions.Sessions
+import io.ktor.sessions.cookie
+import org.slf4j.event.Level
+import kotlin.collections.set
 
 fun main(args: Array<String>): Unit = DevelopmentEngine.main(args)
 
