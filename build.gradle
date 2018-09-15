@@ -46,6 +46,7 @@ dependencies {
     compile "io.ktor:ktor-client-core:$ktor_version"
     compile "io.ktor:ktor-client-jetty:$ktor_version"
     compile group: 'com.google.code.crawler-commons', name: 'crawler-commons', version: '0.5'
+    compile 'org.jsoup:jsoup:1.11.3'
     testCompile "io.ktor:ktor-server-tests:$ktor_version"
     testCompile "io.ktor:ktor-server-core:$ktor_version"
     testCompile "io.ktor:ktor-server-host-common:$ktor_version"

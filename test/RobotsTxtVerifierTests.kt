@@ -13,14 +13,16 @@ class RobotsTxtVerifierTests {
 
     @Test
     fun passesWhenEverythingIsAllowed() {
-        val robotsTxt = RobotsTxtVerifier(validAllowed)
+        val robotsTxt = RobotsTxtVerifier()
+        robotsTxt.parseURL(validAllowed)
 
         assertTrue { robotsTxt.canTheHomepageBeIndexed() }
     }
 
     @Test
     fun failsWhenEverythingIsBlocked() {
-        val robotsTxt = RobotsTxtVerifier(invalidNotAllowed)
+        val robotsTxt = RobotsTxtVerifier()
+        robotsTxt.parseURL(invalidNotAllowed)
 
         assertFalse { robotsTxt.canTheHomepageBeIndexed() }
     }

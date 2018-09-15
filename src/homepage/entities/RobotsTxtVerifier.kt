@@ -5,10 +5,10 @@ import crawlercommons.robots.SimpleRobotRulesParser
 import info.hobocore.websiteChecklist.homepage.entities.Webpage
 import kotlinx.io.core.toByteArray
 
-class RobotsTxtVerifier(rootUrl: String) {
-    private var rules: BaseRobotRules
+class RobotsTxtVerifier() {
+    private lateinit var rules: BaseRobotRules
 
-    init {
+    fun parseURL( rootUrl: String) {
         val url = rootUrl + "robots.txt"
         val robotsTxtContent = Webpage(url).unzipped().toByteArray()
         val rulesParser = SimpleRobotRulesParser()
