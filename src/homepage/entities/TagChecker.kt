@@ -9,17 +9,37 @@ import org.jsoup.select.Elements
 class TagChecker(url:String) {
     private var page: Document = Jsoup.parse(Webpage(url).unzipped())
 
-    fun testOgTitle(): Boolean {
-        return tagExists("meta[property=og:title]")
-    }
-
-    fun testOgImage(): Boolean {
-        return tagExists("meta[property=og:image]")
-    }
-
     private fun tagExists(tag:String):Boolean {
         val instancesOfTag:Elements = page.select(tag)
 
         return instancesOfTag.size > 0
+    }
+
+    fun isOgTitleValid(): Boolean {
+        return tagExists("meta[property=og:title]")
+    }
+
+    fun isOgImageValid(): Boolean {
+        return tagExists("meta[property=og:image]")
+    }
+
+    fun isTitleTagValid(): Boolean {
+        return tagExists("title")
+    }
+
+    fun isOgUrlValid(): Boolean {
+        return tagExists("meta[property=og:url]")
+    }
+
+    fun isOgDescriptionValid(): Boolean {
+        return tagExists("meta[property=og:description]")
+    }
+
+    fun isFacebookAppIdValid(): Boolean {
+        return tagExists("meta[property=fb:app_id]")
+    }
+
+    fun isDescriptionValid(): Boolean {
+        return tagExists("meta[name=description]")
     }
 }

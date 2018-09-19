@@ -5,13 +5,23 @@ import kotlin.test.assertTrue
 import kotlin.test.assertFalse
 
 class TagCheckerTest {
-    lateinit var validPage:TagChecker
-    lateinit var invalidPage:TagChecker
+    private lateinit var validPage:TagChecker
+    private lateinit var invalidPage:TagChecker
 
     @BeforeEach
     fun setup() {
         validPage = getSource("http://entertainment.ie/")
-        invalidPage = getSource("http://www.coombe.ie")
+        invalidPage = getSource("https://notifications.google.com/_/scs/social-static/_/js/k=boq.NotificationsOgbUi.en.EeBysumYvsY.O/ck=boq.NotificationsOgbUi.z8o8n66ljwng.L.W.O/am=QCAYhhYgBAAP/rt=j/d=0/excm=home,_b,_tp/ed=1/rs=AGLTcCPTGjVKc7GrUB3odcBAL-impZPT4A/m=sy5z,_latency,sy3r,FCpbqb,WhJNk")
+    }
+
+    @Test
+    fun passesOnAValidOgUrl() {
+        assertTrue { ogUrlIsValid(validPage)}
+    }
+
+    @Test
+    fun failsOnAnInvalidOgUrl() {
+        assertFalse { ogUrlIsValid(invalidPage) }
     }
 
     @Test
@@ -25,6 +35,16 @@ class TagCheckerTest {
     }
 
     @Test
+    fun passesOnAValidOgDescription() {
+        assertTrue { ogDescriptionIsValid(validPage) }
+    }
+
+    @Test
+    fun failsOnAnInvalidOgDescription(){
+        assertFalse { ogDescriptionIsValid(invalidPage) }
+    }
+
+    @Test
     fun passesOnAValidOgImage() {
         assertTrue { ogImageIsValid(validPage) }
     }
@@ -34,14 +54,64 @@ class TagCheckerTest {
         assertFalse { ogImageIsValid(invalidPage) }
     }
 
-    private fun ogImageIsValid(checker: TagChecker): Boolean {
-        return checker.testOgImage()
+    @Test
+    fun passesOnAValidTitleTag() {
+        assertTrue { titleTagIsValid(validPage) }
     }
 
-    private fun getSource(url:String) = TagChecker(url)
+    @Test
+    fun failsOnAnInvalidTitleTag() {
+        assertFalse { titleTagIsValid(invalidPage) }
+    }
+
+    @Test
+    fun passesOnAValidFacebookAppId() {
+        assertTrue { fbIdIsValid(validPage) }
+    }
+
+    @Test
+    fun failsOnAnInvalidFacebookAppId() {
+        assertFalse { fbIdIsValid(invalidPage) }
+    }
+
+    @Test
+    fun passesOnAValidDescriptionTag() {
+        assertTrue { descriptionIsValid(validPage) }
+    }
+
+    @Test
+    fun failsOnAnInvalidDescriptionTag() {
+        assertFalse { descriptionIsValid(invalidPage) }
+    }
+
+    private fun descriptionIsValid(checker: TagChecker): Boolean {
+        return checker.isDescriptionValid()
+    }
+
+    private fun fbIdIsValid(checker: TagChecker): Boolean {
+        return checker.isFacebookAppIdValid()
+    }
+
+    private fun ogDescriptionIsValid(checker: TagChecker): Boolean {
+        return checker.isOgDescriptionValid()
+    }
+
+    private fun ogUrlIsValid(checker: TagChecker): Boolean {
+        return checker.isOgUrlValid()
+    }
+
+    private fun titleTagIsValid(checker: TagChecker): Boolean {
+        return checker.isTitleTagValid();
+    }
+
+    private fun ogImageIsValid(checker: TagChecker): Boolean {
+        return checker.isOgImageValid()
+    }
+
+    private fun getSource(url:String): TagChecker = TagChecker(url)
 
     private fun ogTitleIsValid(checker:TagChecker):Boolean{
-        return checker.testOgTitle()
+        return checker.isOgTitleValid()
     }
 
 }

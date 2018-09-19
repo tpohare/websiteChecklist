@@ -6,7 +6,7 @@ import kotlin.test.assertTrue
 class AnalyticsCheckerTest {
     @Test
     fun passesOnAPageWithAnalytics() {
-        val hasAnalytics = checkForAnalytics("https://www.fusio.net")
+        val hasAnalytics = checkForAnalytics("https://www.dublinzoo.ie/")
 
         assertTrue { hasAnalytics }
     }
