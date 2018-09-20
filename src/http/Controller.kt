@@ -1,6 +1,6 @@
 package info.hobocore.websiteChecklist.http
 
-import exceptions.SiteParameterMissing
+import exceptions.ParameterMissing
 import io.ktor.application.ApplicationCall
 import io.ktor.http.ContentType
 import io.ktor.http.HttpStatusCode
@@ -17,6 +17,6 @@ open class Controller(var call: ApplicationCall) {
     }
 
     fun getQueryParameter(parameter: String): String {
-        return call.request.queryParameters[parameter] ?: throw SiteParameterMissing()
+        return call.request.queryParameters[parameter] ?: throw ParameterMissing(parameter)
     }
 }

@@ -1,6 +1,6 @@
 package exceptions
 
-class SiteParameterMissing : RuntimeException() {
+data class ParameterMissing(val parameterMissing: String) : Throwable() {
     private var errorMessage: String = ""
 
     init {

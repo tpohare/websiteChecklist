@@ -1,6 +1,6 @@
 package info.hobocore.websiteChecklist
 
-import exceptions.SiteParameterMissing
+import exceptions.ParameterMissing
 import info.hobocore.websiteChecklist.analytics.AnalyticsApi
 import info.hobocore.websiteChecklist.exceptions.AuthenticationFailed
 import info.hobocore.websiteChecklist.exceptions.AuthorizationFailed
@@ -111,7 +111,7 @@ fun Application.module() {
             exception<AuthorizationFailed> { _ ->
                 call.respond(HttpStatusCode.Forbidden)
             }
-            exception<SiteParameterMissing> { cause ->
+            exception<ParameterMissing> { cause ->
                 call.respond(HttpStatusCode.ExpectationFailed, cause)
             }
 
