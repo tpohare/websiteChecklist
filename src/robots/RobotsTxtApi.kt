@@ -6,7 +6,7 @@ import robots.entities.RobotsTxtReport
 
 class RobotsTxtApi(call: ApplicationCall) : Controller(call) {
     suspend fun check() {
-        val url = getQueryParameter("site")
+        val url = queryParameter("site")
 
         respondWithJson(RobotsTxtReport(url))
     }

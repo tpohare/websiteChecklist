@@ -6,7 +6,7 @@ import io.ktor.application.ApplicationCall
 
 class TagsApi(call: ApplicationCall) : Controller(call) {
     suspend fun check() {
-        val url = getQueryParameter("site")
+        val url = queryParameter("site")
 
         respondWithJson(OgTagReport(url))
     }

@@ -16,7 +16,7 @@ open class Controller(var call: ApplicationCall) {
         call.respond(json)
     }
 
-    fun getQueryParameter(parameter: String): String {
+    fun queryParameter(parameter: String): String {
         return call.request.queryParameters[parameter] ?: throw ParameterMissing(parameter)
     }
 }
