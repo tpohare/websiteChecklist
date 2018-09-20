@@ -6,7 +6,7 @@ import org.jsoup.nodes.Document
 import org.jsoup.select.Elements
 
 
-class Tag(url: String) {
+class TagBag(url: String) {
     private var page: Document = Jsoup.parse(Webpage(url).unGzipped())
 
     private fun exists(tag: String): Boolean {

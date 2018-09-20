@@ -15,7 +15,7 @@ data class OgTagReport(val url:String) {
     private var twitterSiteValid: Boolean = false
 
     init {
-        val checker = Tag(url)
+        val checker = TagBag(url)
         this.ogTitleValid = checker.isOgTitleValid()
         this.ogImageValid = checker.isOgImageValid()
         this.titleTagValid = checker.isTitleTagValid()

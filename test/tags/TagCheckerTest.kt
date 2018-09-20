@@ -1,14 +1,14 @@
 package tags
 
-import info.hobocore.websiteChecklist.tags.entities.Tag
+import info.hobocore.websiteChecklist.tags.entities.TagBag
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
 class TagCheckerTest {
-    private lateinit var validPage: Tag
-    private lateinit var invalidPage: Tag
+    private lateinit var validPage: TagBag
+    private lateinit var invalidPage: TagBag
 
     @BeforeEach
     fun setup() {
@@ -136,53 +136,53 @@ class TagCheckerTest {
         assertFalse { twitterDescriptionIsValid(invalidPage) }
     }
 
-    private fun twitterSiteIsValid(checker: Tag): Boolean {
+    private fun twitterSiteIsValid(checker: TagBag): Boolean {
         return checker.isTwitterSiteValid()
     }
 
-    private fun twitterImageIsValid(checker: Tag): Boolean {
+    private fun twitterImageIsValid(checker: TagBag): Boolean {
         return checker.isTwitterImageValid()
     }
 
-    private fun twitterTitleIsValid(checker: Tag): Boolean {
+    private fun twitterTitleIsValid(checker: TagBag): Boolean {
         return checker.isTwitterTitleValid()
     }
 
-    private fun twitterCardIsValid(checker: Tag): Boolean {
+    private fun twitterCardIsValid(checker: TagBag): Boolean {
         return checker.isTwitterCardValid()
     }
 
-    private fun twitterDescriptionIsValid(checker: Tag): Boolean {
+    private fun twitterDescriptionIsValid(checker: TagBag): Boolean {
         return checker.isTwitterDescriptionValid()
     }
 
-    private fun descriptionIsValid(checker: Tag): Boolean {
+    private fun descriptionIsValid(checker: TagBag): Boolean {
         return checker.isDescriptionValid()
     }
 
-    private fun fbIdIsValid(checker: Tag): Boolean {
+    private fun fbIdIsValid(checker: TagBag): Boolean {
         return checker.isFacebookAppIdValid()
     }
 
-    private fun ogDescriptionIsValid(checker: Tag): Boolean {
+    private fun ogDescriptionIsValid(checker: TagBag): Boolean {
         return checker.isOgDescriptionValid()
     }
 
-    private fun ogUrlIsValid(checker: Tag): Boolean {
+    private fun ogUrlIsValid(checker: TagBag): Boolean {
         return checker.isOgUrlValid()
     }
 
-    private fun titleTagIsValid(checker: Tag): Boolean {
+    private fun titleTagIsValid(checker: TagBag): Boolean {
         return checker.isTitleTagValid()
     }
 
-    private fun ogImageIsValid(checker: Tag): Boolean {
+    private fun ogImageIsValid(checker: TagBag): Boolean {
         return checker.isOgImageValid()
     }
 
-    private fun getSource(url: String): Tag = Tag(url)
+    private fun getSource(url: String): TagBag = TagBag(url)
 
-    private fun ogTitleIsValid(checker: Tag): Boolean {
+    private fun ogTitleIsValid(checker: TagBag): Boolean {
         return checker.isOgTitleValid()
     }
 
