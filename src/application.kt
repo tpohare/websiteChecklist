@@ -1,5 +1,6 @@
 package info.hobocore.websiteChecklist
 
+import info.hobocore.websiteChecklist.api.TagChecker
 import info.hobocore.websiteChecklist.exceptions.AuthenticationFailed
 import info.hobocore.websiteChecklist.exceptions.AuthorizationFailed
 import info.hobocore.websiteChecklist.homepage.Homepage
@@ -10,6 +11,7 @@ import io.ktor.application.install
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.jetty.Jetty
 import io.ktor.features.*
+import io.ktor.gson.gson
 import io.ktor.http.HttpHeaders
 import io.ktor.http.HttpMethod
 import io.ktor.http.HttpStatusCode
@@ -68,6 +70,12 @@ fun Application.module() {
         anyHost() // @TODO: Don't do this in production if possible. Try to limit it.
     }
 
+    install(ContentNegotiation) {
+        gson {
+            // Configure Gson here
+        }
+    }
+
     install(DefaultHeaders) {
         header("X-Engine", "Ktor") // will send this header with each response
     }
@@ -79,6 +87,11 @@ fun Application.module() {
     routing {
         get("/") {
             Homepage(call).index()
+        }
+
+        get("/tags") {
+            val url = call.request.queryParameters["site"] ?: "https://www.fusio.net/"
+            TagChecker(call).index(url)
         }
 
         //region static files

@@ -7,7 +7,7 @@ import org.jsoup.select.Elements
 
 
 class TagChecker(url:String) {
-    private var page: Document = Jsoup.parse(Webpage(url).unzipped())
+    private var page: Document = Jsoup.parse(Webpage(url).unGzipped())
 
     private fun tagExists(tag:String):Boolean {
         val instancesOfTag:Elements = page.select(tag)
@@ -62,6 +62,4 @@ class TagChecker(url:String) {
     fun isTwitterSiteValid(): Boolean {
         return tagExists("meta[name=twitter:site]")
     }
-
-
 }

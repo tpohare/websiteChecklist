@@ -11,7 +11,7 @@ class RobotsTxtVerifier() {
     fun parseURL(rootUrl: String) {
         val url = rootUrl + "robots.txt"
 
-        val robotsTxt:String = Webpage(url).unzipped()
+        val robotsTxt:String = Webpage(url).unGzipped()
         val rulesParser = SimpleRobotRulesParser()
 
         this.rules = rulesParser.parseTxt(robotsTxt, url)

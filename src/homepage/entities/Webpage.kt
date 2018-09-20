@@ -17,7 +17,7 @@ class Webpage(url:String) {
         this.inputStream = connection.inputStream
     }
 
-    fun unzipped(): String {
+    fun unGzipped(): String {
         return try {
             GZIPInputStream(this.inputStream).bufferedReader().use { it.readText() }
         } catch (e:IOException) {
