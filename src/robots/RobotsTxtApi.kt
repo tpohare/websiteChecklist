@@ -1,14 +1,14 @@
-package info.hobocore.websiteChecklist.tags
+package info.hobocore.websiteChecklist.robots
 
 import exceptions.SiteParameterMissing
 import info.hobocore.websiteChecklist.http.Controller
-import info.hobocore.websiteChecklist.tags.entities.OgTagReport
 import io.ktor.application.ApplicationCall
+import robots.entities.RobotsTxtReport
 
-class TagsApi(call: ApplicationCall) : Controller(call) {
+class RobotsTxtApi(call: ApplicationCall) : Controller(call) {
     suspend fun check() {
         val url = call.request.queryParameters["site"] ?: throw SiteParameterMissing()
 
-        respondWithJson(OgTagReport(url))
+        respondWithJson(RobotsTxtReport(url))
     }
 }

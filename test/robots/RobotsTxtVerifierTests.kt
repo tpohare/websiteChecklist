@@ -1,5 +1,7 @@
-import homepage.entities.RobotsTxtVerifier
+package robots
+
 import org.junit.jupiter.api.Test
+import robots.entities.RobotsTxtChecker
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
@@ -13,7 +15,7 @@ class RobotsTxtVerifierTests {
 
     @Test
     fun passesWhenEverythingIsAllowed() {
-        val robotsTxt = RobotsTxtVerifier()
+        val robotsTxt = RobotsTxtChecker()
         robotsTxt.parseURL(validAllowed)
 
         assertTrue { robotsTxt.canTheHomepageBeIndexed() }
@@ -21,7 +23,7 @@ class RobotsTxtVerifierTests {
 
     @Test
     fun failsWhenEverythingIsBlocked() {
-        val robotsTxt = RobotsTxtVerifier()
+        val robotsTxt = RobotsTxtChecker()
         robotsTxt.parseURL(invalidNotAllowed)
 
         assertFalse { robotsTxt.canTheHomepageBeIndexed() }

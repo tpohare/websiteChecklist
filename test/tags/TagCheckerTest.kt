@@ -1,3 +1,5 @@
+package tags
+
 import info.hobocore.websiteChecklist.tags.entities.TagChecker
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test

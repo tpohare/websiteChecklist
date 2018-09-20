@@ -1,11 +1,11 @@
-package homepage.entities
+package robots.entities
 
 import crawlercommons.robots.BaseRobotRules
 import crawlercommons.robots.SimpleRobotRulesParser
 import info.hobocore.websiteChecklist.extensions.parseTxt
 import info.hobocore.websiteChecklist.homepage.entities.Webpage
 
-class RobotsTxtVerifier() {
+class RobotsTxtChecker() {
     private lateinit var rules: BaseRobotRules
 
     fun parseURL(rootUrl: String) {

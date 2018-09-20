@@ -4,8 +4,10 @@ import exceptions.SiteParameterMissing
 import info.hobocore.websiteChecklist.analytics.AnalyticsApi
 import info.hobocore.websiteChecklist.exceptions.AuthenticationFailed
 import info.hobocore.websiteChecklist.exceptions.AuthorizationFailed
+import info.hobocore.websiteChecklist.gzip.GzipApi
 import info.hobocore.websiteChecklist.homepage.Homepage
 import info.hobocore.websiteChecklist.persistence.UserSession
+import info.hobocore.websiteChecklist.robots.RobotsTxtApi
 import info.hobocore.websiteChecklist.tags.TagsApi
 import io.ktor.application.Application
 import io.ktor.application.call
@@ -85,22 +87,17 @@ fun Application.module() {
     //endregion
 
     routing {
-        get("/") {
-            Homepage(call).index()
-        }
+        get("/") { Homepage(call).index() }
 
-        get("/tags") {
-            val url = call.request.queryParameters["site"] ?: throw SiteParameterMissing()
-            TagsApi(call).check(url)
-        }
+        get("/tags") { TagsApi(call).check() }
 
-        get("/analytics") {
-            val url = call.request.queryParameters["site"] ?: throw SiteParameterMissing()
-            AnalyticsApi(call).check(url)
-        }
+        get("/robots") { RobotsTxtApi(call).check() }
+
+        get("/analytics") { AnalyticsApi(call).check() }
+
+        get("/gzip") { GzipApi(call).check() }
 
         //region static files
-        // Static feature. Try to access `/static/ktor_logo.svg`
         static("/static") {
             resources("static")
         }
