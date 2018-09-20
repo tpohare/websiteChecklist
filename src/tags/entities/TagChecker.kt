@@ -1,4 +1,4 @@
-package homepage.entities
+package info.hobocore.websiteChecklist.tags.entities
 
 import info.hobocore.websiteChecklist.homepage.entities.Webpage
 import org.jsoup.Jsoup

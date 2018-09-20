@@ -1,6 +1,4 @@
-package info.hobocore.websiteChecklist.homepage.entities
-
-import homepage.entities.TagChecker
+package info.hobocore.websiteChecklist.tags.entities
 
 data class OgTagReport(val url:String) {
     private var ogTitleValid: Boolean = false

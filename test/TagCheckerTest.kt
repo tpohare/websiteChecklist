@@ -1,8 +1,8 @@
-import homepage.entities.TagChecker
+import info.hobocore.websiteChecklist.tags.entities.TagChecker
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import kotlin.test.assertTrue
 import kotlin.test.assertFalse
+import kotlin.test.assertTrue
 
 class TagCheckerTest {
     private lateinit var validPage:TagChecker
@@ -124,6 +124,16 @@ class TagCheckerTest {
         assertFalse { twitterSiteIsValid(invalidPage) }
     }
 
+    @Test
+    fun passesOnAValidTwitterDescription() {
+        assertTrue { twitterDescriptionIsValid(validPage) }
+    }
+
+    @Test
+    fun failsOnAnInvalidTwitterDescription() {
+        assertFalse { twitterDescriptionIsValid(invalidPage) }
+    }
+
     private fun twitterSiteIsValid(checker: TagChecker): Boolean {
         return checker.isTwitterSiteValid()
     }
@@ -135,19 +145,6 @@ class TagCheckerTest {
     private fun twitterTitleIsValid(checker: TagChecker): Boolean {
         return checker.isTwitterTitleValid()
     }
-
-    @Test
-    fun passesOnAValidTwitterDescription() {
-        assertTrue { twitterDescriptionIsValid(validPage) }
-    }
-
-    @Test
-    fun failsOnAnInvalidTwitterDescription() {
-        assertFalse { twitterDescriptionIsValid(invalidPage) }
-    }
-
-
-
 
     private fun twitterCardIsValid(checker: TagChecker): Boolean {
         return checker.isTwitterCardValid()
@@ -174,7 +171,7 @@ class TagCheckerTest {
     }
 
     private fun titleTagIsValid(checker: TagChecker): Boolean {
-        return checker.isTitleTagValid();
+        return checker.isTitleTagValid()
     }
 
     private fun ogImageIsValid(checker: TagChecker): Boolean {

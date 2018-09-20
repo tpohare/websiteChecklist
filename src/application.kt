@@ -1,10 +1,11 @@
 package info.hobocore.websiteChecklist
 
-import info.hobocore.websiteChecklist.api.TagChecker
+import info.hobocore.websiteChecklist.analytics.AnalyticsApi
 import info.hobocore.websiteChecklist.exceptions.AuthenticationFailed
 import info.hobocore.websiteChecklist.exceptions.AuthorizationFailed
 import info.hobocore.websiteChecklist.homepage.Homepage
 import info.hobocore.websiteChecklist.persistence.UserSession
+import info.hobocore.websiteChecklist.tags.TagsApi
 import io.ktor.application.Application
 import io.ktor.application.call
 import io.ktor.application.install
@@ -91,7 +92,12 @@ fun Application.module() {
 
         get("/tags") {
             val url = call.request.queryParameters["site"] ?: "https://www.fusio.net/"
-            TagChecker(call).check(url)
+            TagsApi(call).check(url)
+        }
+
+        get("/analytics") {
+            val url = call.request.queryParameters["site"] ?: "https://www.theverge.com/"
+            AnalyticsApi(call).check(url)
         }
 
         //region static files

@@ -56,7 +56,7 @@ dependencies {
     testCompile "io.ktor:ktor-client-core:$ktor_version"
     testCompile "io.ktor:ktor-client-jetty:$ktor_version"
 
-    testImplementation('org.junit.jupiter:junit-jupiter-api:5.1.0')
+    testImplementation('org.junit.jupiter:junit-jupiter-tags:5.1.0')
     testRuntimeOnly('org.junit.jupiter:junit-jupiter-engine:5.1.0')
 }
 
