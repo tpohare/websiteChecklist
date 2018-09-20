@@ -2,7 +2,7 @@ package info.hobocore.websiteChecklist.homepage.entities
 
 import homepage.entities.TagChecker
 
-class OgTagReport(url:String) {
+data class OgTagReport(val url:String) {
     private var ogTitleValid: Boolean = false
     private var ogImageValid: Boolean = false
     private var titleTagValid: Boolean = false
@@ -15,7 +15,6 @@ class OgTagReport(url:String) {
     private var twitterDescriptionValid: Boolean = false
     private var twitterImageValid: Boolean = false
     private var twitterSiteValid: Boolean = false
-    private var url:String = ""
 
     init {
         val checker = TagChecker(url)
@@ -31,6 +30,5 @@ class OgTagReport(url:String) {
         this.twitterDescriptionValid = checker.isTwitterDescriptionValid()
         this.twitterImageValid = checker.isTwitterImageValid()
         this.twitterSiteValid = checker.isTwitterSiteValid()
-        this.url = url
     }
 }
