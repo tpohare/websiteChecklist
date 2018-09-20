@@ -91,7 +91,7 @@ fun Application.module() {
 
         get("/tags") {
             val url = call.request.queryParameters["site"] ?: "https://www.fusio.net/"
-            TagChecker(call).index(url)
+            TagChecker(call).check(url)
         }
 
         //region static files

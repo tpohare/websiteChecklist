@@ -5,7 +5,7 @@ import info.hobocore.websiteChecklist.http.Controller
 import io.ktor.application.ApplicationCall
 
 class TagChecker(call: ApplicationCall) : Controller(call) {
-    suspend fun index(url:String) {
+    suspend fun check(url:String) {
         respondWithJson(OgTagReport(url))
     }
 }
