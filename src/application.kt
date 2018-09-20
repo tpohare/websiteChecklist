@@ -112,7 +112,7 @@ fun Application.module() {
                 call.respond(HttpStatusCode.Forbidden)
             }
             exception<ParameterMissing> { cause ->
-                call.respond(HttpStatusCode.ExpectationFailed, cause)
+                call.respond(HttpStatusCode.ExpectationFailed, cause.message())
             }
 
         }
