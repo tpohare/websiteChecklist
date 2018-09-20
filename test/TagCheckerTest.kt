@@ -10,7 +10,7 @@ class TagCheckerTest {
 
     @BeforeEach
     fun setup() {
-        validPage = getSource("http://entertainment.ie/")
+        validPage = getSource("https://www.theverge.com/")
         invalidPage = getSource("https://notifications.google.com/_/scs/social-static/_/js/k=boq.NotificationsOgbUi.en.EeBysumYvsY.O/ck=boq.NotificationsOgbUi.z8o8n66ljwng.L.W.O/am=QCAYhhYgBAAP/rt=j/d=0/excm=home,_b,_tp/ed=1/rs=AGLTcCPTGjVKc7GrUB3odcBAL-impZPT4A/m=sy5z,_latency,sy3r,FCpbqb,WhJNk")
     }
 
@@ -82,6 +82,79 @@ class TagCheckerTest {
     @Test
     fun failsOnAnInvalidDescriptionTag() {
         assertFalse { descriptionIsValid(invalidPage) }
+    }
+
+    @Test
+    fun passesOnAValidTwitterCard() {
+        assertTrue { twitterCardIsValid(validPage) }
+    }
+
+    @Test
+    fun failsOnAValidTwitterCard() {
+        assertFalse { twitterCardIsValid(invalidPage) }
+    }
+
+    @Test
+    fun passesOnAValidTwitterTitle() {
+        assertTrue { twitterTitleIsValid(validPage) }
+    }
+
+    @Test
+    fun failsOnAnInvalidTwitterTitle() {
+        assertFalse { twitterTitleIsValid(invalidPage) }
+    }
+
+    @Test
+    fun passesOnAValidTwitterImage() {
+        assertTrue { twitterImageIsValid(validPage) }
+    }
+
+    @Test
+    fun failsOnAnInvalidTwitterImage() {
+        assertFalse { twitterImageIsValid(invalidPage) }
+    }
+
+    @Test
+    fun passesOnAValidTwitterSite(){
+        assertTrue { twitterSiteIsValid(validPage) }
+    }
+
+    @Test
+    fun failsOnAnInvalidTwitterSite(){
+        assertFalse { twitterSiteIsValid(invalidPage) }
+    }
+
+    private fun twitterSiteIsValid(checker: TagChecker): Boolean {
+        return checker.isTwitterSiteValid()
+    }
+
+    private fun twitterImageIsValid(checker: TagChecker): Boolean {
+        return checker.isTwitterImageValid()
+    }
+
+    private fun twitterTitleIsValid(checker: TagChecker): Boolean {
+        return checker.isTwitterTitleValid()
+    }
+
+    @Test
+    fun passesOnAValidTwitterDescription() {
+        assertTrue { twitterDescriptionIsValid(validPage) }
+    }
+
+    @Test
+    fun failsOnAnInvalidTwitterDescription() {
+        assertFalse { twitterDescriptionIsValid(invalidPage) }
+    }
+
+
+
+
+    private fun twitterCardIsValid(checker: TagChecker): Boolean {
+        return checker.isTwitterCardValid()
+    }
+
+    private fun twitterDescriptionIsValid(checker: TagChecker): Boolean {
+        return checker.isTwitterDescriptionValid()
     }
 
     private fun descriptionIsValid(checker: TagChecker): Boolean {

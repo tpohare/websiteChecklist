@@ -26,6 +26,4 @@ class RobotsTxtVerifierTests {
 
         assertFalse { robotsTxt.canTheHomepageBeIndexed() }
     }
-
-
 }

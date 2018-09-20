@@ -2,7 +2,6 @@ package homepage.entities
 
 import info.hobocore.websiteChecklist.homepage.entities.Webpage
 import java.io.IOException
-import java.io.InputStream
 import java.util.zip.GZIPInputStream
 
 class GZIPVerifier {

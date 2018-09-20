@@ -42,4 +42,26 @@ class TagChecker(url:String) {
     fun isDescriptionValid(): Boolean {
         return tagExists("meta[name=description]")
     }
+
+    fun isTwitterCardValid(): Boolean {
+        return tagExists("meta[name=twitter:card]")
+    }
+
+    fun isTwitterTitleValid(): Boolean {
+        return tagExists("meta[name=twitter:title]")
+    }
+
+    fun isTwitterDescriptionValid(): Boolean {
+        return tagExists("meta[name=twitter:description]")
+    }
+
+    fun isTwitterImageValid(): Boolean {
+        return tagExists("meta[name=twitter:image]")
+    }
+
+    fun isTwitterSiteValid(): Boolean {
+        return tagExists("meta[name=twitter:site]")
+    }
+
+
 }
