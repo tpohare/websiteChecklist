@@ -1,5 +1,6 @@
 package info.hobocore.websiteChecklist
 
+import exceptions.SiteParameterMissing
 import info.hobocore.websiteChecklist.analytics.AnalyticsApi
 import info.hobocore.websiteChecklist.exceptions.AuthenticationFailed
 import info.hobocore.websiteChecklist.exceptions.AuthorizationFailed
@@ -19,14 +20,12 @@ import io.ktor.http.HttpStatusCode
 import io.ktor.http.content.resources
 import io.ktor.http.content.static
 import io.ktor.locations.Locations
-import io.ktor.request.path
 import io.ktor.response.respond
 import io.ktor.routing.get
 import io.ktor.routing.routing
 import io.ktor.server.netty.DevelopmentEngine
 import io.ktor.sessions.Sessions
 import io.ktor.sessions.cookie
-import org.slf4j.event.Level
 import kotlin.collections.set
 
 fun main(args: Array<String>): Unit = DevelopmentEngine.main(args)
@@ -53,10 +52,10 @@ fun Application.module() {
         }
     }
 
-    install(CallLogging) {
-        level = Level.INFO
-        filter { call -> call.request.path().startsWith("/") }
-    }
+//    install(CallLogging) {
+//        level = Level.INFO
+//        filter { call -> call.request.path().startsWith("/") }
+//    }
 
     install(ConditionalHeaders)
 
@@ -91,12 +90,12 @@ fun Application.module() {
         }
 
         get("/tags") {
-            val url = call.request.queryParameters["site"] ?: "https://www.fusio.net/"
+            val url = call.request.queryParameters["site"] ?: throw SiteParameterMissing()
             TagsApi(call).check(url)
         }
 
         get("/analytics") {
-            val url = call.request.queryParameters["site"] ?: "https://www.theverge.com/"
+            val url = call.request.queryParameters["site"] ?: throw SiteParameterMissing()
             AnalyticsApi(call).check(url)
         }
 
@@ -109,11 +108,14 @@ fun Application.module() {
 
         //region Errors
         install(StatusPages) {
-            exception<AuthenticationFailed> {  cause ->
+            exception<AuthenticationFailed> { _ ->
                 call.respond(HttpStatusCode.Unauthorized)
             }
-            exception<AuthorizationFailed> {  cause ->
+            exception<AuthorizationFailed> { _ ->
                 call.respond(HttpStatusCode.Forbidden)
+            }
+            exception<SiteParameterMissing> { cause ->
+                call.respond(HttpStatusCode.ExpectationFailed, cause)
             }
 
         }
