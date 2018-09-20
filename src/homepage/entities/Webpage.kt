@@ -26,4 +26,15 @@ class Webpage(url:String) {
             this.inputStream.bufferedReader().use { it.readText() }
         }
     }
+
+    fun isGzipped(): Boolean {
+        // GZIPInputStream will throw if it's not given a gzipped Input Stream as a param.
+        return try {
+            GZIPInputStream(inputStream)
+
+            true
+        } catch (e: IOException) {
+            false
+        }
+    }
 }

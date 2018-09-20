@@ -5,7 +5,7 @@ import crawlercommons.robots.SimpleRobotRulesParser
 import info.hobocore.websiteChecklist.extensions.parseTxt
 import info.hobocore.websiteChecklist.homepage.entities.Webpage
 
-class RobotsTxtChecker() {
+class RobotsTxtRules() {
     private lateinit var rules: BaseRobotRules
 
     fun parseURL(rootUrl: String) {
@@ -15,8 +15,6 @@ class RobotsTxtChecker() {
         val rulesParser = SimpleRobotRulesParser()
 
         this.rules = rulesParser.parseTxt(robotsTxt, url)
-
-        //this.rules = rulesParser.parseContent(url, robotsByteArray, "application/text", "*")
     }
 
     fun canTheHomepageBeIndexed(): Boolean {

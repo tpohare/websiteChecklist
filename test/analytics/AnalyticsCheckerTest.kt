@@ -1,6 +1,6 @@
 package analytics
 
-import analytics.entities.AnalyticsChecker
+import analytics.entities.AnalyticsTags
 import org.junit.jupiter.api.Test
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
@@ -35,10 +35,10 @@ class AnalyticsCheckerTest {
     }
 
     private fun checkForTagManager(url: String): Boolean {
-        return AnalyticsChecker().checkForGoogleTagManager(url)
+        return AnalyticsTags().checkForGoogleTagManager(url)
     }
 
     private fun checkForAnalytics(url:String): Boolean {
-        return AnalyticsChecker().checkForAnalytics(url)
+        return AnalyticsTags().checkForAnalytics(url)
     }
 }
